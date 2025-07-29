@@ -5,16 +5,16 @@ var lastSel = null;
 var sel;
 var addBtn;
 var totalAmt = 0;
-var product_1 = 'p1';
-var product_2 = 'p2';
-var product_3 = 'p3';
-var product_4 = 'p4';
-var product_5 = `p5`;
+const product_1 = 'p1';
+const product_2 = 'p2';
+const product_3 = 'p3';
+const product_4 = 'p4';
+const product_5 = `p5`;
 var cartDisp;
 var sum;
 
 //상품 리스트 변수
-var prodList = [
+const prodList = [
   {
     id: product_1,
     name: '버그 없애는 키보드',
@@ -61,17 +61,6 @@ var prodList = [
     suggestSale: false,
   },
 ];
-function onGetStockTotal() {
-  var currentProduct;
-  var sum;
-
-  sum = 0;
-  for (let i = 0; i < prodList.length; i++) {
-    currentProduct = prodList[i];
-    sum += currentProduct.q;
-  }
-  return sum;
-}
 
 function doRenderBonusPoints() {
   var basePoints;
@@ -165,7 +154,7 @@ function handleStockInfoUpdate() {
   var totalStock;
   var messageOptimizer;
   infoMsg = '';
-  totalStock = onGetStockTotal();
+  totalStock = prodList.reduce((acc, product) => acc + product.q, 0);
   if (totalStock < 30) {
   }
   prodList.forEach(function (item) {
